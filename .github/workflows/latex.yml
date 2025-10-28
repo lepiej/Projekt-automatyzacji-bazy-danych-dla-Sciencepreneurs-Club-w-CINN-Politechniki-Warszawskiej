@@ -1,28 +1,30 @@
-name: Build LaTeX document
+name: LaTeX Build
 
 on:
   push:
-    branches: [main]
+    branches: [ improvements ]
   pull_request:
-    branches: [main]
+    branches: [ improvements ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v3
+      
       - name: Set up LaTeX
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v2
         with:
           root_file: main.tex
           latexmk_use_xelatex: true
-          # You can change this if your main file is named differently
-
+          
+      - name: Build PDF
+        run: |
+          mkdir -p pdf
+          latexmk -pdf main.tex
+          
       - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: thesis-pdf
           path: main.pdf
