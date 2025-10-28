@@ -14,11 +14,10 @@
 \usepackage[T1]{fontenc}
 
 % Konfiguracja jezyka
-% Dla pdfLaTeX z językiem polskim
-\usepackage[MeX]{polski}
-\usepackage[english,polish]{babel}
+\usepackage{polyglossia}
+\setmainlanguage{polish}
+\setotherlanguage{english}
 \usepackage{csquotes}
-\selectlanguage{polish}
 \usepackage[utf8]{inputenc}
 
 % Ustawienia strony - WYMAGANE
@@ -28,8 +27,9 @@
 \fancyhf{}
 \fancyfoot[LE,RO]{\thepage}
 
-% Czcionka bezszeryfowa - ZALECANE
-\usepackage{helvet}
+% Czcionka bezszeryfowa - ZALECANE z obsługą polskich znaków
+\usepackage[T1]{fontenc}
+\usepackage{tgheros}
 \renewcommand{\familydefault}{\sfdefault}
 
 % Interlinia 1.15 - ZALECANE
