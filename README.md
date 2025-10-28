@@ -8,7 +8,5 @@ W odpowiedzi na te wyzwania, niniejsza praca inżynierska na podstawie szczegó�
 zarządzanie danymi, automatyzacja, usprawnienie procesów, analiza systemu
 
 ## License
-Code in this repository is released under the [MIT License](LICENSE).
-
-The written thesis is licensed under 
-**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
+This thesis is licensed under a 
+[Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).
