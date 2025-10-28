@@ -1,0 +1,92 @@
+Choć bazy danych kojarzą się głównie z zaawansowanym \gls{dbms}, w praktyce przechowywanie informacji często odbywa się przy użyciu prostszych narzędzi. Wiele organizacji, szczególnie na początkowym etapie działalności, korzysta z arkuszy kalkulacyjnych, takich jak \gls{excel}, do przechowywania i zarządzania danymi. Warto więc przyjrzeć się, na ile \gls{excel} spełnia kryteria bazy danych i jakie są jego ograniczenia. W połączeniu z narzędziami takimi jak \gls{powerquery}, \gls{powerautomate} czy \gls{forms}, \gls{excel} może znacząco rozszerzyć swoje możliwości. Właściwie zaprojektowana architektura takiego rozwiązania pozwala na automatyzację procesów, eliminację błędów i zwiększenie efektywności pracy. W niniejszym rozdziale przeanalizowane zostaną możliwości Excela w kontekście baz danych oraz sposoby jego integracji z innymi narzędziami w celu stworzenia elastycznego i wydajnego systemu wspierającego organizacje w codziennej działalności.
+
+\section{Bazy danych}
+
+Baza danych to uporządkowany zbiór informacji, który umożliwia ich efektywne przechowywanie, organizowanie i przetwarzanie. Dane mogą być przechowywane w różnych formatach, ale podstawową cechą każdej bazy danych jest możliwość łatwego dostępu do przechowywanych informacji oraz ich modyfikowania. Typowa baza danych opiera się na tabelach lub listach, gdzie dane są podzielone na pola (ang. \textit{fields}) oraz rekordy (ang. \textit{records}). \parencite[s. 3]{elmasrinavathe2016} Można ją porównać do biblioteki, gdzie każda książka (rekord) ma swoje miejsce i jest oznaczona w katalogu, aby łatwo ją odnaleźć. 
+
+Podstawowymi elementami baz danych są:
+
+\begin{table}[htbp]
+\centering
+\caption[Podstawowe elementy baz danych, źródło: \cite{elmasrinavathe2016}]{Podstawowe elementy baz danych}
+\label{tab:podbazdanych}
+\begin{tabular}{l p{9cm}}
+\hline
+\textbf{Element bazy danych} & \textbf{Opis} \\
+\hline
+Pole & najmniejsza jednostka danych w rekordzie, np. imię, nazwisko czy adres e-mail. \\
+\hline
+Rekord & pojedynczy zestaw informacji zapisany w bazie danych, np. dane jednego uczestnika wydarzenia. \\
+\hline
+Tabela & zbiór rekordów uporządkowany w wiersze i kolumny, gdzie każda kolumna odpowiada określonemu polu. \\
+\hline
+\gls{dbms} & oprogramowanie umożliwiające tworzenie, modyfikowanie i zarządzanie bazami danych. \\
+\hline
+\end{tabular}
+\vspace{0.5em}
+\par\raggedright\footnotesize{Źródło: \cite{elmasrinavathe2016}}
+\end{table}
+
+
+Bazy danych można podzielić na różne typy w zależności od ich struktury i sposobu przechowywania informacji. Najczęściej spotykane to:
+\begin{itemize}
+    \item \gls{rdbms} – dane przechowywane są w tabelach, a relacje między nimi umożliwiają efektywne wyszukiwanie i organizację informacji (np. \gls{sqlserver}).
+    \item \gls{nosql} – bazy danych o mniej sformalizowanej strukturze, często wykorzystywane w aplikacjach wymagających wysokiej skalowalności (np. \gls{mongodb}, \gls{cassandra}).
+\end{itemize}
+Klasyczne bazy danych, takie jak \gls{rdbms}, opierają się na tabelach połączonych ze sobą logicznymi relacjami. To rozwiązanie umożliwia szybkie przeszukiwanie informacji oraz ich modyfikowanie bez ryzyka utraty spójności. 
+\gls{nosql} to kategoria baz danych, które przechowują dane w sposób nienarzucający relacyjnej struktury tabelarycznej. Mogą to być bazy dokumentowe \gls{mongodb}, klucz-wartość \gls{redis}, grafowe \gls{neo4j} lub kolumnowe \gls{cassandra}. 
+
+Jednak nie każda baza danych musi mieć skomplikowaną strukturę. W wielu przypadkach organizacje decydują się na proste rozwiązania, takie jak arkusze kalkulacyjne. \gls{excel}, mimo że technicznie nie jest pełnoprawną bazą danych, często pełni tę funkcję dzięki swojej zdolności do przechowywania, przetwarzania i analizy dużych zbiorów informacji. Jest to rozwiązanie tańsze, prostsze w obsłudze i łatwo dostępne, co czyni je uzasadnionym wyborem dla mniejszych projektów.
+
+\section{Excel jako baza danych – kompromis między elastycznością a wydajnością}
+
+Excel i inne arkusze kalkulacyjne mogą pełnić funkcję bazy danych, ponieważ pozwalają na przechowywanie informacji w tabelach, gdzie kolumny odpowiadają polom, a wiersze rekordom. Przypomina to struktury relacyjnych baz danych, ale nie zapewnia funkcji zarządzania danymi na poziomie \gls{dbms}. \gls{excel} nie posiada zaawansowanych mechanizmów zarządzania dostępem, jest mniej wydajny przy pracy z bardzo dużymi zbiorami danych, a brak struktur relacyjnych może prowadzić do redundancji informacji. Wykorzystanie \gls{excel} jako głównej bazy danych budzi kontrowersje. Dlatego w przypadku bardziej wymagających projektów warto uzupełnić jego funkcjonalności narzędziami automatyzującymi i usprawniającymi przetwarzanie danych.
+
+\section{Power Query, Power Automate i Forms – automatyzacja w ekosystemie Microsoft 365}
+
+Automatyzacja to proces wdrażania technologii umożliwiających systemom informatycznym wykonywanie powtarzalnych zadań bez konieczności ingerencji człowieka. W literaturze przedmiotu automatyzację definiuje się jako zastąpienie ludzkiej pracy procesami sterowanymi przez systemy techniczne, które wykonują powtarzalne operacje w sposób bardziej efektywny i precyzyjny.~\cite{brzezinski2002}
+
+Microsoft oferuje kompleksowy zestaw narzędzi do automatyzacji procesów biznesowych, umożliwiając organizacjom sprawne zarządzanie danymi w obrębie jednego ekosystemu. Kluczowe znaczenie w tym kontekście mają \gls{forms}, \gls{powerquery} oraz \gls{powerautomate} – trzy narzędzia, które w połączeniu z \gls{excel} mogą stanowić wydajny, elastyczny i ekonomiczny system przetwarzania danych.
+
+\gls{forms} to z kolei narzędzie do zbierania danych poprzez interaktywne formularze online. W połączeniu z \gls{powerautomate} umożliwia automatyczne przekazywanie zebranych informacji do Excela lub innych baz danych, eliminując konieczność ręcznego przepisywania.
+
+\gls{powerquery} to narzędzie, które umożliwia pobieranie, transformację i analizę danych z różnych źródeł. Dzięki niemu możliwe jest zautomatyzowanie procesów importu, eliminacja błędów oraz integracja danych w sposób uporządkowany. W praktyce oznacza to, że użytkownik może połączyć dane z różnych plików \gls{excel}, baz danych SQL czy nawet stron internetowych i przygotować je do dalszej analizy jednym kliknięciem.
+
+\gls{powerautomate} to platforma do tworzenia zautomatyzowanych przepływów pracy, która umożliwia integrację różnych aplikacji i automatyczne wykonywanie określonych zadań. Może np. wysyłać powiadomienia e-mailowe po wprowadzeniu nowych danych do \gls{excel}, synchronizować informacje między arkuszami lub nawet łączyć systemy zewnętrzne bez konieczności programowania.
+
+"Przepływ" w kontekście \gls{powerautomate} to zdefiniowana sekwencja działań, która rozpoczyna się od wyzwalacza i prowadzi przez serię kroków przetwarzania danych aż do określonego rezultatu. \cite{microsoft_power_automate_2025} Struktura przepływu składa się z następujących elementów teoretycznych:
+
+\begin{itemize}
+    \item Wyzwalacz (trigger), jest to wydarzenie rozpoczynające cały proces, np. otrzymanie nowej odpowiedzi w formularzu Microsoft Forms.
+    \item Akcje (actions) - konkretne działania wykonywane na danych, np. "dodaj wiersz do tabeli Excel", "wyślij e-mail".
+    \item Warunki (conditions) - rozgałęzienia w przepływie pozwalające na różne ścieżki działania w zależności od spełnienia określonych warunków np. jeśli pole jest puste, wykonaj dodatkową weryfikację.
+\end{itemize}
+
+\section{Architektura rozwiązania – kluczowe aspekty projektowania}
+
+W kontekście omawianych narzędzi – \gls{excel}, \gls{powerquery}, \gls{powerautomate} i \gls{forms} – decyzje o ich doborze i integracji stanowią część szerszego projektu architektury rozwiązania, który pozwala na pełne wykorzystanie ich potencjału.Dobrze zaprojektowana architektura uwzględnia nie tylko technologie, ale również procesy, które pozwalają na sprawną integrację narzędzi i systemów. Dobre zrozumienie architektury rozwiązania jest więc niezbędne, by zbudować system, który będzie stabilny, skalowalny i łatwy w utrzymaniu. 
+
+Architektura rozwiązań (Solution Architecture) to ustrukturyzowany sposób opracowywania rozwiązań technologicznych, który pozwala skutecznie rozwiązać określony problem, zminimalizować ryzyko lub wykorzystać nową szansę biznesową. Nazwa „architektura rozwiązań” odnosi się do kompleksowego i systematycznego podejścia, które gwarantuje, że projektowane rozwiązanie rzeczywiście odpowiada na zidentyfikowane potrzeby i będzie spójne z całą strukturą organizacyjną oraz istniejącym ekosystemem \gls{it}. \parencite[s. 4]{lovatt2021}
+
+Można ją porównać do architektury budowlanej – dobrze zaprojektowana zapewni trwałość i niezawodność systemu, natomiast błędy w projektowaniu mogą prowadzić do problemów już na wczesnym etapie wdrożenia.
+
+Pierwszym krokiem w projektowaniu dobrej architektury jest zadanie sobie kluczowych pytań: Dlaczego ten system jest potrzebny? Co powinien umożliwić? Czego nie powinien robić? Kto będzie go używać? Odpowiedzi na te pytania pomogą stworzyć solidną podstawę dla projektowanej architektury. 
+
+Dobrze zaprojektowana architektura rozwiązań uwzględnia zarówno wymagania funkcjonalne, jak i niefunkcjonalne, a także integruje technologie, procesy i strategię biznesową. Dzięki temu minimalizuje ryzyko wdrożeniowe, zapewnia skalowalność oraz umożliwia długoterminowy rozwój systemu zgodnie z celami organizacji.\cite{gupta2023}
+
+\section{Rola narzędzi low-code/no-code w systemach biznesowych}
+
+Transformacja cyfrowa procesów biznesowych prowadzi do coraz szerszego wykorzystania narzędzi typu low-code i no-code, które zmieniają sposób, w jaki organizacje podchodzą do wdrażania nowych rozwiązań technologicznych. \parencite[s. 171]{bodicherla2025} Platformy te stanowią istotną alternatywę dla tradycyjnego programowania, szczególnie w kontekście automatyzacji procesów administracyjnych podobnych do opisanego w niniejszej pracy systemu dla Sciencepreneurs Club.
+
+Narzędzia typu low-code/no-code znacząco wpłynęły na różne sektory, od dużych przedsiębiorstw po małe i średnie firmy, szczególnie w przyspieszaniu inicjatyw transformacji cyfrowej. Zastosowanie tego typu rozwiązań pozwala na osiągnięcie wymiernych korzyści w zakresie efektywności tworzenia oprogramowania, redukcji kosztów oraz zwiększenia zwinności biznesowej.
+Analiza rynku przeprowadzona przez Grand View Research, cytowana przez Bodicherlę \parencite[s. 173]{bodicherla2025}, pokazuje imponujący potencjał wzrostu - wartość rynku platform low-code wynosiła 16,1 miliarda USD w 2022 roku, z prognozowanym rocznym wskaźnikiem wzrostu (CAGR) na poziomie 27,5\% w latach 2023-2030. Ten wzrost jest napędzany rosnącym zapotrzebowaniem na rozwiązania z zakresu automatyzacji procesów biznesowych oraz szybkiego tworzenia aplikacji.
+
+Szczególnie istotnym trendem, który może mieć znaczenie dla przyszłego rozwoju systemu Sciencepreneurs Club, jest zmiana w demografii użytkowników platform low-code. Badania firmy Zoho z 2023 roku, przytoczone przez Bodicherlę \parencite[s. 173]{bodicherla2025}, wskazują, że 42\% użytkowników platform low-code to obecnie specjaliści biznesowi bez tradycyjnego wykształcenia programistycznego. Co więcej, 73\% organizacji planuje rozszerzyć wykorzystanie platform low-code do automatyzacji procesów biznesowych i tworzenia aplikacji w nadchodzącym roku.
+
+W kontekście wdrożeń w środowisku akademickim, istotna jest również obserwacja dotycząca rodzajów tworzonych aplikacji. Według danych Grand View Research \parencite[s. 173]{bodicherla2025}, aplikacje webowe stanowiły dominującą część rynku z udziałem ponad 55\% w 2022 roku, natomiast aplikacje mobilne wykazują najszybsze tempo wzrostu. Dla instytucji takich jak Politechnika Warszawska, która dąży do zwiększenia swojej obecności cyfrowej, ta tendencja wskazuje na potrzebę rozwoju rozwiązań dostępnych na różnych platformach.
+
+Wybór modelu wdrożeniowego również zasługuje na uwagę - rozwiązania oparte na chmurze dominowały na rynku w 2023 roku, stanowiąc 68\% wszystkich wdrożeń \parencite[s. 173]{bodicherla2025}. Preferencja ta jest przede wszystkim związana z rozszerzoną skalowalnością i dostępnością oferowaną przez wdrożenia chmurowe, co jest szczególnie istotne we wspieraniu zespołów pracujących zdalnie.
+
+Opisane w niniejszej pracy rozwiązanie dla Sciencepreneurs Club bazujące na narzędziach Microsoft 365, w tym Microsoft Forms, Power Automate i Power Query, stanowi praktyczny przykład implementacji podejścia low-code/no-code w środowisku akademickim. Zaadaptowane rozwiązanie doskonale wpisuje się w globalny trend wykorzystania tego typu platform do usprawnienia procesów biznesowych, przy jednoczesnym wykorzystaniu istniejącej infrastruktury technologicznej.
+
+W kontekście danych przedstawionych przez Bodicherlę \parencite[s. 172]{bodicherla2025}, organizacje wdrażające rozwiązania low-code odnotowują znaczącą redukcję czasu tworzenia aplikacji, z niektórymi projektami ukończonymi w ciągu zaledwie kilku tygodni, zamiast miesięcy typowo wymaganych przy użyciu tradycyjnych metod programowania. Ta obserwacja potwierdza zasadność wybranego podejścia dla projektu Sciencepreneurs Club, gdzie szybkość implementacji i elastyczność rozwiązania stanowiły kluczowe kryteria wyboru.

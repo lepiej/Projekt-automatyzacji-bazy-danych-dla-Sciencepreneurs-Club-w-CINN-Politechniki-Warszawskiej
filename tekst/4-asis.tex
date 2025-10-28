@@ -1,0 +1,69 @@
+Sciencepreneurs Club to młody, dynamicznie rozwijający się projekt, realizowany w ramach działalności \gls{inin}, którego głównym celem jest organizowanie cyklicznych wydarzeń dla osób z obszaru nauki i przedsiębiorczości. Baza kontaktów uczestników stanowi kluczowy zasób dla dalszego rozwoju inicjatywy, co sprawia, że skuteczne zarządzanie danymi staje się priorytetem. W tej części pracy zostanie przeanalizowany obecny system zarządzania danymi, który został wykorzystany podczas pierwszej edycji projektu. Przedstawiona analiza pomoże zidentyfikować obecne ograniczenia oraz uzasadnić konieczność wdrożenia bardziej rozwiniętego systemu zarządzania danymi.
+
+\section{Bazowy system zarządzania danymi}
+
+W trakcie pierwszej edycji Sciencepreneurs Club zastosowano podstawowe narzędzia do zarządzania danymi uczestników. Rejestracja odbywała się za pośrednictwem formularza \gls{forms}, który umożliwiał zbieranie podstawowych informacji o uczestnikach. Po zakończeniu rejestracji dane były eksportowane do arkusza w \gls{excel}. Na tej podstawie przygotowano listę uczestników, która została wydrukowana w dniu wydarzenia. Lista ta zawierała również puste wiersze, które pozwalały na ręczne dopisywanie uczestników pojawiających się bez wcześniejszej rejestracji. Po zakończeniu wydarzenia analiza danych trwała około czterech godzin. Polegała na porównaniu dwóch list: dopisaniu ewentualnych uczestników, którzy dopisali w trakcie wydarzenia, identyfikacji osób uczestniczących w więcej niż jednym spotkaniu, a następnie sporządzeniu listy unikalnych uczestników i przypisaniu każdemu z nich frekwencji.
+
+\section{Bazowa infrastruktura technologiczna}
+
+\gls{inin} od momentu powstania w 2015 roku \cite{RegulaminININ2015} zgromadził znaczną ilość danych związanych z realizowanymi projektami, współpracą z przedsiębiorstwami oraz organizacją wydarzeń. Przez lata dane te były przechowywane w tradycyjnej strukturze folderów na lokalnych serwerach \gls{onprem}, co zapewniało pełną kontrolę nad zasobami, ale jednocześnie generowało wyzwania związane z ich dostępnością, bezpieczeństwem oraz współdzieleniem.
+
+Wraz z rozwojem działalności \gls{inin} i rosnącą liczbą projektów zaczęto dostrzegać ograniczenia klasycznego podejścia do przechowywania danych. Ręczne zarządzanie plikami oraz utrudniona synchronizacja pomiędzy członkami zespołu prowadziły do spowolnienia pracy oraz ryzyka utraty danych. W odpowiedzi na te wyzwania rozpoczęto stopniową migrację do chmurowych rozwiązań dostępnych w ramach licencji Microsoft 365. Proces ten umożliwia centralizację danych, ułatwia ich udostępnianie oraz zwiększa poziom bezpieczeństwa dzięki mechanizmom automatycznej archiwizacji i kontroli dostępu.
+
+Aby lepiej zrozumieć kontekst transformacji danych w ramach projektu Sciencepreneurs Club, niezbędne jest przeanalizowanie szerszego procesu migracji \gls{inin} do chmury. Przejście na nowoczesne rozwiązania technologiczne ma bezpośredni wpływ na sposób zarządzania danymi w projekcie, kształtując nowe możliwości, ale także stawiając przed zespołem organizacyjnym określone wyzwania.
+
+\section{Analiza SWOT}
+Analiza \gls{swot} jest najczęściej stosowana w kontekście strategii biznesowej, projektów lub organizacji, ale można ją także wykorzystać do oceny systemów informatycznych, narzędzi i procesów. \gls{swot} w kontekście systemu zarządzania danymi może być przydatne do analizy wpływu tego systemu na działalność organizacji i oceny możliwych usprawnień. Nazwa \gls{swot} jest akronimem angielskich słów: (ang. \textit{Strengths}) mocne strony organizacji, (ang. \textit{Weaknesses}) słabe strony organizacji, (ang. \textit{Opportunities}) szanse w otoczeniu, (ang. \textit{Threats}) zagrożenia w otoczeniu. Metoda SWOT jest opisana w literaturze jako metoda identyfikacji i klasyfikacji czynników warunkujących strategię firmy lub przedsięwzięcia. \parencite[s. 80]{szmitka2015} 
+
+W analizie \gls{swot} wyróżnia się cztery grupy czynników umożliwiające procedurę analityczną i wpływające na funkcjonowanie badanego obiektu:
+\begin{itemize}
+    \item Mocne strony – S (ang. \textit{Strengths}) – czynnik wewnętrzny, stanowiący atut, przewagę, zaletę i który może przełożyć się na sukces analizowanego obiektu
+    \item Słabe strony – W (ang. \textit{Weaknesses}) – czynnik wewnętrzny, stanowiący słabość, barierę, wadę i który może wpłynąć na brak sukcesu analizowanego obiektu
+    \item Szanse – O (ang. \textit{Opportunities}) – czynnik zewnętrzny dotyczący otoczenia (istniejący lub potencjalny), który stwarza możliwość korzystnej zmiany dla analizowanego obiektu
+    \item Zagrożenia – T (ang. \textit{Threats}) – czynnik zewnętrzny dotyczący otoczenia (istniejący lub prawdopodobny), stwarzający możliwość niekorzystnej zmiany dla analizowanego obiektu. 
+\end{itemize}
+
+\begin{table}[ht]
+    \centering
+    \small % Zmniejszenie tekstu dla lepszego dopasowania
+    \caption[Analiza SWOT bazowego systemu zarządzania danymi dla projektu Sciencepreneurs Club, źródło: opracowanie własne]{Analiza SWOT bazowego systemu zarządzania danymi dla projektu Sciencepreneurs Club}
+    \label{tab:swot}
+    \begin{tabular}{|p{7cm}|p{7cm}|}
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Mocne strony (S)}} \\
+        \hline
+        \textbf{Wykorzystanie znanych narzędzi:} \textit{Sciencepreneurs Club} bazuje na narzędziach Microsoft, takich jak \gls{forms} i \gls{excel}, które są powszechnie używane i dobrze znane zespołowi. To sprawia, że zarządzanie danymi jest na początkowym etapie proste i dostępne, bez potrzeby wprowadzania skomplikowanych systemów. &
+        \textbf{Prosty proces rejestracji:} Rejestracja uczestników za pomocą \gls{forms} jest łatwa i intuicyjna, co zmniejsza bariery wejścia dla potencjalnych uczestników. \\
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Słabe strony (W)}} \\
+        \hline
+        \textbf{Nieczytelność ręcznych wpisów:} Ręcznie dopisywani uczestnicy często zapisują dane nieczytelnie, co prowadzi do błędów przy ich przepisywaniu. &
+        \textbf{Ręczne zarządzanie danymi:} Bazowy proces zarządzania danymi jest w dużej części manualny, co sprawia, że jest czasochłonny i podatny na błędy. Każda edycja wymaga ręcznego przetwarzania danych. \\
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Szanse (O)}} \\
+        \hline
+        \textbf{Kapitał intelektualny pracowników:} Istnieje możliwość wdrożenia zautomatyzowanego systemu, który usprawni zarządzanie danymi, zwiększy efektywność operacyjną i poprawi dokładność analiz. &
+        \textbf{Rozwój i rozszerzenie bazy kontaktów:} Zwiększająca się liczba uczestników i wydarzeń stwarza szansę na rozwinięcie bazy kontaktów, co może wzmocnić pozycję projektu i umożliwić skuteczniejszą komunikację marketingową. \\
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Zagrożenia (T)}} \\
+        \hline
+        \textbf{Rosnąca liczba uczestników:} W miarę rozwoju projektu, coraz większa liczba uczestników może doprowadzić do przeciążenia bazowego systemu, co utrudni efektywne zarządzanie danymi. &
+        \textbf{Brak rejestracji online:} Nie wszyscy uczestnicy rejestrują się online, co wymusza ręczne dodawanie ich danych do listy przez zespół. Ręczne wprowadzanie informacji zwiększa ryzyko błędów i utrudnia analizę. \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+ W Tabeli~\ref{tab:swot} przedstawiono analizę \gls{swot} dla bazowego systemu zarządzania danymi uczestników dla projektu Sciencepreneurs Club.
+Bazowy system, choć spełnia swoje podstawowe zadanie, nie przewiduje długoterminowego rozwoju projektu. Główne ograniczenia związane są z brakiem struktury procesu odpowiedzialnego za przetwarzanie danych na przestrzeni kilku edycji. Każda edycja wymaga ręcznego porównywania list uczestników, kopiowania informacji kontaktowych oraz eliminacji duplikatów. Proces ten jest czasochłonny oraz podatny na błędy.
+
+\break
+Ponadto analizowany system nie jest przygotowany do efektywnego wykorzystywania zebranych danych do analiz, takich jak frekwencja uczestników czy estymacje liczby uczestników na przyszłe edycje. Brak automatyzacji w tym zakresie oznacza konieczność ręcznego przetwarzania informacji, co może prowadzić do niedokładnych wniosków.  Uczestnicy dopisywani ręcznie często zapisują swoje dane w sposób nieczytelny, co utrudnia ich późniejsze przetwarzanie. Błędy mogą pojawiać się zarówno na etapie odczytu, jak i przepisywania informacji do systemu, co zwiększa ryzyko pomyłek i utraty części danych. Co więcej, raporty analityczne oparte na tych danych będą w przyszłości kluczowe dla ewaluacji projektu, podejmowania decyzji o jego kontynuacji oraz szacowania budżetu. Bez odpowiedniego systemu do zarządzania danymi, tworzenie precyzyjnych i wiarygodnych raportów będzie utrudnione, co może negatywnie wpłynąć na długoterminowe planowanie i rozwój Sciencepreneurs Club. 
+
+W kontekście promocji, przy każdej edycji wydarzenia wymagana jest ręczna aktualizacja list kontaktów. Może to prowadzić do błędów oraz problemów z dotarciem do odpowiednich uczestników.
+
+Brak skalowalności bazowego systemu może również hamować rozwój projektu, ponieważ zarządzanie coraz większą liczbą uczestników stanie się zbyt skomplikowane i czasochłonne, co może zniechęcać organizatorów i wpływać na jakość danych z kolejnych edycji.
+
+Analiza bazowego systemu wyraźnie wskazuje na konieczność wprowadzenia bardziej zaawansowanego i zautomatyzowanego rozwiązania do zarządzania danymi uczestników Sciencepreneurs Club. Obecny system zarządzania danymi spełnił swoje zadanie podczas pierwszej edycji, jednak jego ograniczenia stają się coraz bardziej widoczne w kontekście przyszłych edycji. Ręczne zarządzanie danymi, brak skalowalności oraz utrudnienia w analizie i marketingu wskazują na pilną potrzebę wdrożenia nowego, zautomatyzowanego systemu, który usprawni operacje, zwiększy dokładność danych i umożliwi dynamiczny rozwój bazy danych odbiorców projektów.
+

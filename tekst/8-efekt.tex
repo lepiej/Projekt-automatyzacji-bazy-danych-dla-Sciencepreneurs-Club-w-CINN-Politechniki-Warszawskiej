@@ -1,0 +1,369 @@
+Wdrożenie zautomatyzowanego systemu przetwarzania danych w projekcie Sciencepreneurs Club ma na celu usprawnienie zarządzania rejestracją uczestników i analizą frekwencji. Sama implementacja nowych narzędzi to jednak dopiero początek – kluczowe jest określenie, czy rzeczywiście przyniosły one oczekiwane korzyści. Czy automatyzacja pozwoliła wyeliminować błędy i skrócić czas pracy? Jak ocenia ją administrator systemu? Czy koszty wdrożenia były uzasadnione w kontekście osiągniętych usprawnień? Aby odpowiedzieć na te pytania, przeprowadzono analizę efektywności, obejmującą zarówno aspekty operacyjne, jak i ekonomiczne. Ocenie została poddana jakość przetwarzania danych, wpływ systemu na organizację pracy oraz poziom automatyzacji w porównaniu do wcześniejszego rozwiązania. Dodatkowo przeanalizowane zostały koszty wdrożenia i utrzymania systemu, aby określić, na ile inwestycja w automatyzację jest opłacalna.
+
+\section{Analiza ilościowa i jakościowa}
+
+Podstawowym wskaźnikiem jest dokładność i kompletność danych. W celu zweryfikowania, czy nowe operacje automatyzacji nie wpływają na utratę lub błędne przetwarzanie rekordów, przeprowadzono szczegółowe porównanie danych. Test jakości danych polegał na trzech krokach. Pierwszy, po zakończeniu rejestracji dla danej edycji generowano zrzut danych bezpośrednio z formularza Microsoft Forms. W pierwotnym systemie dane te były zawsze kompletne (100\% poprawnych rekordów). W drugim kroku zrzut danych z Forms został porównany z danymi załadowanymi do arkusza \gls{excel}, który stanowił bazę przetwarzania w nowym systemie. Porównano rekordy na podstawie kluczowych pól (np. adres e-mail, imię, nazwisko). Następnie dane z arkusza Excel zostały porównane z główną bazą unikatowych uczestników oraz bazą frekwencji. Celem było sprawdzenie, czy każdy rekord z edycji (wraz z ewentualnymi korektami, np. dodanym wpisem uczestnika, który pojawił się bez wcześniejszego zgłoszenia) został prawidłowo zintegrowany w centralnej bazie. Dzięki tej metodzie badawczej możliwe było ilościowe potwierdzenie, że nowa automatyzacja nie wpływa negatywnie na integralność danych, a przetwarzanie przebiega zgodnie z oczekiwaniami. W rezultacie wskaźnik poprawności danych wyniósł 100\%, co potwierdza, że żaden rekord nie został utracony ani błędnie przetworzony w procesie automatyzacji.
+
+Kiedy już wiarygodność danych została potwierdzona, kluczowym wskaźnikiem sukcesu systemu jest ocena administratora. Choć proces rejestracji nie ulega zmianie z perspektywy uczestników, administrator będzie odczuwał  różnicę, ponieważ jego zakres pracy ulegnie zmianie. Jako osoba odpowiedzialna za zarządzanie systemem, administrator dysponuje unikalnym wglądem w jego wydajność, użyteczność oraz stabilność. Do oceny wykorzystano ankietę satysfakcji z użyciem 5-punktowej skali Likerta (1 – niezadowolony, 5 – bardzo zadowolony).
+
+\begin{table}[ht]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \caption[Ocena administratora systemu bazowego i zautomatyzowanego, źródło: opracowanie własne]{Ocena administratora systemu bazowego i zautomatyzowanego}
+    \begin{tabular}{| p{4cm} | p{5cm} | p{5cm} |}
+        \hline
+        \textbf{Kategoria} & \textbf{Bazowy system} & \textbf{Zautomatyzowany system} \\
+        \hline
+        \textbf{Ocena administratora} & Średnia ocena: 3,5/5 & Średnia ocena: 4,8/5 \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Agnieszka Lewandowska, administrator systemu, wyraziła bardzo wysoką satysfakcję (4,8/5). W wywiadzie podkreśliła: „Instrukcja krok po kroku i film instruktażowy pozwoliły mi przygotować kolejną edycję bez problemów. System działa niezawodnie, a Power Query automatycznie usuwa duplikaty i aktualizuje raporty.”
+
+Ocenie został poddany również czas przetwarzania danych, który odpowiada za efektywność całego systemu. Czas przetwarzania danych obejmuje zarówno setup nowej edycji, jak i analizę bieżących zgłoszeń. Główną zmianą jest kolejność zadań wykonywanych przez administratora. W pierwszej edycji przetwarzanie danych oraz ich analiza były manualnym procesem wykonywanym po wydarzeniu, teraz przed rejestracją uczestników administrator aktualizuje system na kolejną edycję Sciencepreneurs Club, a przetwarzanie i analiza odbywają się automatycznie. W poprzednim analiza frekwencji trwała czasem pół dnia (identyfikacja osób uczestniczących w więcej niż jednym spotkaniu, a następnie sporządzenie listy unikalnych uczestników i przypisanie każdemu z nich frekwencji), dodatkowo była narażona na manualne błędy. W nowym systemie lista jest aktualizowana na bieżąco, co umożliwia natychmiastową analizę i szybką reakcję na zmieniające się warunki przed wydarzeniem. 
+
+\begin{table}[ht]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \caption[Porównanie czasu pracy systemu bazowego i zautomatyzowanego, źródło: opracowanie własne]{Porównanie czasu pracy systemu bazowego i zautomatyzowanego}
+    \begin{tabular}{| p{4cm} | p{5cm} | p{5cm} |}
+        \hline
+        \textbf{Kategoria} & \textbf{Bazowy system} & \textbf{Zautomatyzowany system} \\
+        \hline
+        Setup nowej edycji & 20 min (Forms) & 40 min (Forms, Power Automate, Power Query) \\
+        \hline
+        Przetwarzanie zgłoszeń & 2 godziny (automatyczna synchornizacja + ewentualne manualne uzupełnienia uczestnków) & Automatyczne (automatyczna synchronizacja + automatyczne uzupełnienie uczestników podczas wydarzenia) \\
+        \hline
+        Analiza frekwencji & 4 godziny (ręczne opracowanie) & Automatyczna, z możliwością drobnych korekt \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Choć setup nowej edycji (obejmujący konfigurację \gls{powerautomate}, \gls{powerquery} i \gls{forms} trwa około godzinę, całościowy czas przetwarzania zgłoszeń oraz generowania raportów został skrócony do kilku godzin, a automatyzacja raportowania (np. analiza frekwencji) odbywa się w tle, eliminując potrzebę manualnych interwencji.
+
+W analizie porównano stopień automatyzacji systemu przed i po wdrożeniu rozwiązań automatyzujących. W systemie bazowym, gdzie większość operacji, weryfikacja i przetwarzanie danych oraz późniejsze analizy frekwencji były wykonywane ręcznie, stopień automatyzacji oceniono na około 12,5\%. Na podstawie zmapowania każdego etapu pracy, gdzie jedynie pobranie danych z \gls{forms} do \gls{excel} odbywało się automatycznie, tylko 1/8 etapów nie wymagała manualnej interwencji. Pozostałe etapy to: przygotowanie formularza \gls{forms}, publikacja formularza rejestracyjnego, wydrukowanie tabel z dodatkowymi miejscami na wpisy, uzupełnienie ewentualnie dopisanych uczestników na miejscu, identyfikacja osób uczestniczących w więcej niż jednym spotkaniu, a następnie sporządzenie listy unikalnych uczestników i przypisanie każdemu z nich frekwencji. Oznacza to, że większość zadań wymagała bezpośredniej interwencji administratora, co nie tylko wydłużało czas obsługi, ale również zwiększało ryzyko wystąpienia błędów. 
+Wdrożenie zautomatyzowanego systemu, opartego na narzędziach takich jak \gls{powerautomate} i \gls{powerquery}, umożliwiło automatyzację kluczowych procesów. Dodatkowa rezygnacja z ręcznego dopisywania uczestników w dniu wydarzenia na rzecz przekierowania ich do rejestracji online skróciła czas pracy i zmniejszyła podatność na błędy. Dzięki temu przepływy pracy zostały znacząco usprawnione, co pozwoliło na ograniczenie ręcznych interwencji i skrócenie czasu realizacji zadań do około 50\% automatyzacji, gdzie 4/8 etapów odbywa się bez manualnej pracy. Usunięto ręcznie dodawane etapy obsługi uczestników, w zamian wprowadzono dodatkowe czynności manualne związane z konfiguracją, jednak przetwarzanie danych odbywa się w pełni automatycznie. Taka zmiana wpływa korzystnie zarówno na efektywność operacyjną, jak i na poprawę jakości danych.
+
+\begin{table}[ht]
+    \centering
+    \caption[Porównanie stopnia automatyzacji systemu bazowego i zautomatyzowanego, źródło: opracowanie własne]{Porównanie stopnia automatyzacji systemu bazowego i zautomatyzowanego}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| l | c | c |}
+        \hline
+        \textbf{Kategoria} & \textbf{Bazowy system} & \textbf{Zautomatyzowany system} \\
+        \hline
+        \textbf{Stopień automatyzacji} & 12,5\% & 50\% \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Transformacja systemu umożliwiła znaczną redukcję manualnych operacji, co przekłada się na wyższą wydajność i mniejsze ryzyko błędów. 
+
+\section{Szczegółowa analiza kosztów wdrożenia}
+W celu efektywnej realizacji projektu wdrożenia systemu automatyzacji rejestracji uczestników wydarzeń w ramach \gls{pw} przeprowadzono szczegółową analizę budżetową. Przygotowane zestawienie kosztów posłużyło jako podstawa do podjęcia decyzji przez kierownictwo \gls{inin}, zapewniając przejrzystość finansowania oraz uwzględniając dostępne środki uczelni.
+
+Projekt finansowany jest w całości ze środków uczelni, bez konieczności pozyskiwania dodatkowych funduszy zewnętrznych. Kluczowe źródła finansowania to budżet operacyjny \gls{cinn}, przeznaczony na wynagrodzenia pracowników oraz licencje \gls{microsoft365}, pokrywające koszty wykorzystania narzędzi \gls{excel}, \gls{powerautomate} i \gls{forms}, co eliminuje konieczność ponoszenia dodatkowych opłat licencyjnych. Alokacja środków odbywa się w ramach rocznego budżetu jednostki, przy czym projekt realizowany jest w obrębie programu optymalizacji procesów administracyjnych, stanowiącego jeden z elementów strategii cyfryzacji uczelni.
+
+Koszty wdrożenia obejmują wszystkie niezbędne nakłady na realizację projektu, w tym wynagrodzenia zespołu oraz dodatkowe koszty związane z implementacją.
+
+\begin{table}[ht]
+    \centering
+    \caption[Koszty personelu w projekcie wdrożenia, źródło: opracowanie własne na podstawie danych kadrowych ININ]{Koszty personelu w projekcie wdrożenia}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+   \begin{tabular}{| p{2,3cm} | p{5cm} | p{3cm} | p{3,5cm} |}
+        \hline
+        \textbf{Stanowisko} & \textbf{Miesięczne wynagrodzenie (PLN)} & \textbf{Alokacja czasu} & \textbf{Koszt w projekcie (PLN)} \\
+        \hline
+        Praktykantka & 6 000 & 60\% $\times$ 1 miesiąc & 3 600 \\
+        \hline
+        Kierownik projektu & 13~600 & 10\% $\times$ 1 miesiąc & 1 360 \\
+        \hline
+        \textbf{Suma} & & & \textbf{4~960} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne na podstawie danych kadrowych ININ}
+\end{table}
+
+
+Analiza kosztów personelu opiera się na rzeczywistych stawkach wynagrodzenia pracowników \gls{inin} oraz na precyzyjnie oszacowanym czasie poświęconym na realizację projektu. Kluczowym założeniem jest zaangażowanie praktykantki w wymiarze 60\% miesięcznego czasu pracy (co odpowiada około 96 godzinom) oraz kierownika projektu w wymiarze 10\% (około 16 godzin).
+
+Wybór takiej struktury zespołu projektowego jest nieprzypadkowy – praktykantka posiada niezbędne kompetencje techniczne do implementacji systemu, natomiast kierownik projektu zapewnia nadzór merytoryczny, koordynację działań oraz podejmowanie kluczowych decyzji. Alokowanie do projektu doświadczonego kierownika jedynie w niezbędnym wymiarze czasu (10\%) jest przykładem efektywnego zarządzania zasobami ludzkimi, co przełożyło się na redukcję kosztów personalnych o około 30\% w porównaniu do standardowego modelu realizacji, gdzie zaangażowanie kierownika wynosi zwykle około 25-30\% czasu.
+
+\begin{table}[ht]
+    \centering
+    \caption[Dodatkowe koszty wdrożenia uwzględniające czas uczestników, źródło: opracowanie własne]{Dodatkowe koszty wdrożenia uwzględniające czas uczestników}
+    \label{tab:dodatkowe_koszty_czas}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.30\textwidth} | p{0.20\textwidth} | p{0.15\textwidth} | p{0.20\textwidth} |}
+        \hline
+        \textbf{Kategoria} & \textbf{Szczegóły} & \textbf{Koszt (PLN)} & \textbf{Uzasadnienie} \\
+        \hline
+        Uczestnictwo w~szkoleniach & Czas zespołu ININ (5 osób) & 1~500 & 5 osób $\times$ 3h $\times$ 100 PLN/h \\
+        \hline
+        \textbf{Suma} & & \textbf{1~500} & \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Dodatkowe koszty, często bywają pomijane w podstawowych analizach ekonomicznych. W przedstawionej tabeli uwzględniono koszty czasu poświęconego przez uczestników szkolenia, którzy nie są bezpośrednio zaangażowani w realizację projektu.
+W szkoleniu uczestniczyło 5 osób z zespołu \gls{inin}, a każda z nich poświęciła na to 3 godziny swojego czasu pracy. Przyjmując średnią stawkę godzinową na poziomie 100 zł/h (odpowiadającą typowym kosztom pracy specjalistów w \gls{inin}), uzyskujemy łączny koszt 1 500 zł. Uwzględnienie tego kosztu jest kluczowe dla rzetelnej oceny całkowitych nakładów związanych z wdrożeniem, gdyż czas poświęcony na szkolenia to czas, który mógłby zostać wykorzystany na inne zadania operacyjne.
+
+\begin{table}[ht]
+    \centering
+    \caption[Całkowite koszty wdrożenia, źródło: opracowanie własne]{Zestawienie całkowitych kosztów wdrożenia}
+    \label{tab:calkowite_koszty_wdrozenia}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.5\textwidth} | r |}
+        \hline
+        \textbf{Kategoria kosztów} & \textbf{Wartość (PLN)} \\
+        \hline
+        Koszty personelu & 4~960 \\
+        \hline
+        Koszty uczestnictwa w szkoleniach & 1~500 \\
+        \hline
+        \textbf{Suma} & \textbf{6~460} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Zestawienie całkowitych kosztów wdrożenia pozwala na kompleksową ocenę nakładów finansowych niezbędnych do realizacji projektu. Całkowity koszt w wysokości 6 460 zł stanowi sumę kosztów personelu 4 960 zł oraz kosztów uczestnictwa w szkoleniach 1 500 zł.
+
+Ta wartość reprezentuje rzeczywisty, całościowy koszt wdrożenia, uwzględniający zarówno bezpośrednie koszty implementacji systemu, jak i niezbędne koszty dodatkowe wynikające z zaangażowania czasu wszystkich uczestników projektu. 
+
+System został zaprojektowany tak, aby utrzymanie automatyzacji rejestracji wymagało minimalnych nakładów finansowych. Ponieważ każda edycja wydarzenia wymaga utworzenia nowego przepływu pracy i formularza, koszty operacyjne zostały skalkulowane w sposób cykliczny.
+
+\begin{table}[ht]
+    \centering
+    \caption[Koszty operacyjne systemu automatyzacji rejestracji, źródło: opracowanie własne na podstawie kalkulacji z wykorzystaniem \gls{mcc}]{Koszty operacyjne systemu automatyzacji rejestracji}
+    \label{tab:koszty_operacyjne_systemu}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.32\textwidth} | p{2,2cm} | p{1,6cm} | p{0.31\textwidth} |}
+        \hline
+        \textbf{Kategoria kosztów} & \textbf{Wartość miesięczna (PLN)} & \textbf{Wartość roczna (PLN)} & \textbf{Źródło finansowania} \\
+        \hline
+        \gls{excel} (baza danych)  & 10 & 120 & W ramach licencji \gls{microsoft365} \\
+        \hline
+        \gls{powerautomate} (przepływy pracy)  & 20 & 240 & W ramach licencji \gls{microsoft365} \\
+        \hline
+        \gls{forms} (formularze)  & 5 & 60 & W ramach licencji \gls{microsoft365} \\
+        \hline
+        Wsparcie techniczne - administrator (4h/miesiąc) & 340 & 4~080 & Budżet operacyjny \gls{cinn} \\
+        \hline
+        \textbf{Łączny koszt} & \textbf{375} & \textbf{4~500} & \textbf{Finansowanie wewnętrzne} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne na podstawie kalkulacji z wykorzystaniem \gls{mcc}}
+\end{table}
+
+Łączny miesięczny koszt operacyjny wynoszący 375 zł przekłada się na roczny koszt w wysokości 4 500 zł, co stanowi około 69,6\% całkowitych kosztów wdrożenia (6 460 zł). 
+
+Dzięki wykorzystaniu posiadanych licencji \gls{microsoft365}, wydatki te nie obejmują dodatkowych kosztów subskrypcyjnych ani serwisowych. Koszty związane z \gls{excel}, \gls{powerautomate} oraz \gls{forms} zostały oszacowane na podstawie kalkulatora kosztów Microsoft, który umożliwia precyzyjne określenie kosztów poszczególnych usług w ramach pakietu \gls{microsoft365}. Wartości te odzwierciedlają proporcjonalne obciążenie tych usług przez system automatyzacji rejestracji, uwzględniając zarówno wykorzystanie zasobów obliczeniowych, jak i przestrzeni dyskowej.
+
+Kategoria "Wsparcie techniczne" obejmuje koszty związane z bieżącą obsługą systemu przez administratora. Po dokładnej analizie zadań administratora ustalono, że realistyczne obciążenie pracą wynosi około 4 godzin miesięcznie i obejmuje:
+\begin{itemize}
+    \item Tworzenie nowych formularzy i przepływów pracy dla każdego wydarzenia (2h/miesiąc)
+    \item Rozwiązywanie problemów technicznych i pomoc użytkownikom (1h/miesiąc)
+    \item Okresowe przeglądy systemu i aktualizacje dokumentacji (1h/miesiąc)
+\end{itemize}
+
+Przyjmując stawkę godzinową administratora na poziomie 85 zł/h (co odpowiada miesięcznemu wynagrodzeniu około 13 600 zł przy pełnym etacie), miesięczny koszt wsparcia technicznego wynosi 340 zł (4h × 85 zł/h), co przekłada się na roczny koszt 4 080 zł.
+
+\begin{table}[ht]
+    \centering
+    \caption[Prognoza kosztów utrzymania systemu w perspektywie 3-letniej, źródło: opracowanie własne na podstawie prognoz inflacyjnych \cite{NBP2025}]{Prognoza kosztów utrzymania systemu w perspektywie 3-letniej}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.2\textwidth} | p{0.2\textwidth} | p{0.5\textwidth} |}
+        \hline
+        \textbf{Rok} & \textbf{Koszt roczny (PLN)} & \textbf{Uzasadnienie} \\
+        \hline
+        1(2025) & 4~500 & Standardowe koszty operacyjne \\
+        \hline
+        2(2026) & 4~721 & Uwzględnienie 4,9\% inflacji \\
+        \hline
+        3(2027) & 4~881 & Uwzględnienie 3,4\% inflacji \\
+        \hline
+        \textbf{Suma za 3 lata} & \textbf{14~102} & \textbf{} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne na podstawie prognoz inflacyjnych \cite{NBP2025}}
+\end{table}
+
+Długoterminowa analiza kosztów utrzymania jest niezbędna dla pełnego zrozumienia ekonomicznych konsekwencji wdrożenia systemu. Przedstawiona prognoza obejmuje perspektywę trzyletnią, co jest średnim horyzontem czasowym dla analiz ekonomicznych projektów realizowanych przez uczelnie wyższe w Polsce. ~\parencite[s. 293]{paczek2018}
+
+Po uwzględnieniu aktualnych prognoz inflacyjnych NBP (4,9\% dla 2025 r., 3,4\% dla 2026 r.), łączne koszty utrzymania w perspektywie 3-letniej wynoszą 14 102 PLN, co stanowi 218,3\% początkowego kosztu wdrożenia (6 460 PLN). Pomimo wyższych kosztów utrzymania, projekt nadal pozostaje ekonomicznie uzasadniony dzięki znaczącym korzyściom ekonomicznym, które zostaną szczegółowo przeanalizowane w kolejnych sekcjach.
+
+\section{Analiza korzyści ekonomicznych}
+
+Kompleksowa analiza ekonomiczna projektu wymaga nie tylko identyfikacji kosztów, ale przede wszystkim kwantyfikacji korzyści. W niniejszej sekcji przedstawiono szczegółową analizę korzyści ekonomicznych wynikających z wdrożenia systemu automatyzacji rejestracji, uwzględniając zarówno bezpośrednie oszczędności czasowe, jak i korzyści wynikające z redukcji błędów oraz poprawy satysfakcji użytkowników.
+
+Automatyzacja procesów rejestracji uczestników wydarzeń przynosi wymierne oszczędności czasowe, które przekładają się na korzyści finansowe.
+
+\begin{table}[ht]
+    \centering
+    \caption[Oszczędności czasowe wynikające z wdrożenia systemu, źródło: opracowanie własne na podstawie analizy procesów ININ oraz danych z Tabeli 7.2]{Oszczędności czasowe wynikające z wdrożenia systemu}
+    \label{tab:oszczednosci_czasowe}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.35\textwidth} | p{0.15\textwidth} | p{0.45\textwidth} |}
+        \hline
+        \textbf{Kategoria} & \textbf{Wartość} & \textbf{Uzasadnienie} \\
+        \hline
+        Czas obsługi jednego wydarzenia przed automatyzacją & 6,33 godziny & Suma czasów: setup (0,33h), przetwarzanie zgłoszeń (2h) i analiza frekwencji (4h) \\
+        \hline
+        Czas obsługi jednego wydarzenia po automatyzacji & 0,67 godziny & Tylko czas na setup nowej edycji, pozostałe procesy są automatyczne \\
+        \hline
+        Oszczędność czasu na jedno wydarzenie & 5,67 godziny & Różnica między czasem przed i po automatyzacji (6,33h - 0,67h) \\
+        \hline
+        Liczba wydarzeń w roku 2023 & 5 & Dane historyczne \\
+        \hline
+        Liczba wydarzeń w roku 2024 & 7 & Dane historyczne \\
+        \hline
+        Prognozowana liczba wydarzeń w roku 2025 & 10 & Prognoza na podstawie trendu wzrostowego \\
+        \hline
+        Łączna roczna oszczędność czasu & 56,7 godziny & Oszczędność na jedno wydarzenie $\times$ liczba wydarzeń w 2025 roku (5,67h $\times$ 10) \\
+        \hline
+        Stawka godzinowa administratora & 85 PLN/h & Wynikająca z miesięcznego wynagrodzenia 13~600 PLN przy pełnym etacie \\
+        \hline
+        Roczna oszczędność finansowa & 4~820 PLN & Łączna oszczędność czasu $\times$ stawka godzinowa administratora (56,7h $\times$ 85 PLN/h) \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne na podstawie analizy procesów ININ oraz danych z Tabeli 7.2}
+\end{table}
+
+Analiza oszczędności czasowych opiera się na szczegółowym badaniu procesów przed i po automatyzacji, przedstawionym w Tabeli 7.2. Warto zauważyć, że setup nowej edycji wymaga nieco więcej czasu w zautomatyzowanym systemie (40 minut) w porównaniu do systemu bazowego (20 minut), co daje ujemną oszczędność czasu w tej kategorii (-20 minut na jedno wydarzenie). Jednak ta dodatkowa inwestycja czasu jest z nawiązką rekompensowana przez automatyzację pozostałych etapów. Przetwarzanie zgłoszeń, które wcześniej zajmowało 2 godziny, teraz odbywa się automatycznie. Analiza frekwencji, która przed automatyzacją wymagała 4 godzin pracy, obecnie jest wykonywana automatycznie. Łączna oszczędność czasu na jedno wydarzenie wynosi 5,67 godziny (czyli 5 godzin i 40 minut). 
+
+\break
+Przy prognozie 10 wydarzeń na rok 2025, wynikającej z analizy trendu wzrostowego z lat 2023-2024, przekłada się to na łączną roczną oszczędność 56,7 godzin pracy administratora. Przyjmując stawkę godzinową administratora na poziomie 85 zł/h, wynikającą z jego miesięcznego wynagrodzenia w wysokości 13 600 zł przy pełnym etacie, roczna oszczędność finansowa wynosi 4 820 zł (56,7h × 85 zł/h).
+
+\begin{table}[ht]
+    \centering
+    \caption[Prognoza rocznych korzyści ekonomicznych z uwzględnieniem inflacji w perspektywie 3-letniej, źródło: opracowanie własne z uwzględnieniem aktualnych prognoz inflacyjnych \cite{NBP2025} oraz danych z Tabeli 7.9]{Prognoza rocznych korzyści ekonomicznych z uwzględnieniem inflacji w perspektywie 3-letniej}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.2\textwidth} | p{0.2\textwidth} | p{0.5\textwidth} |}
+        \hline
+        \textbf{Rok} & \textbf{Oszczędności roczne (PLN)} & \textbf{Uzasadnienie} \\
+        \hline
+        1(2025) & 4~820 & Oszczędności finansowe \\
+        \hline
+        2(2026) & 5~056 & Uwzględnienie 4,9\% inflacji \\
+        \hline
+        3(2027) & 5~228 & Uwzględnienie 3,4\% inflacji \\
+        \hline
+        \textbf{Suma za 3 lata} & \textbf{15~104} & \textbf{Łączne oszczędności} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne z uwzględnieniem aktualnych prognoz inflacyjnych \cite{NBP2025} oraz danych z Tabeli 7.9}
+\end{table}
+
+Zestawienie całkowitych rocznych korzyści ekonomicznych pozwala na kompleksową ocenę wartości generowanej przez system automatyzacji rejestracji w perspektywie wieloletniej. W roku 2025 korzyści ekonomiczne wynoszą 4 820 zł, co stanowi  74,6\% całkowitych kosztów wdrożenia (6 460 zł). W kolejnych latach wartość ta rośnie do 5 056 zł w roku 2026 i 5 228 zł w roku 2027, co daje łączną wartość korzyści w analizowanym okresie na poziomie 15 104 zł.
+
+\section{Analiza opłacalności inwestycji}
+
+W celu kompleksowej oceny efektywności ekonomicznej projektu przeprowadzono analizę opłacalności inwestycji, wykorzystując kluczowe wskaźniki finansowe: \gls{npv} oraz \gls{roi}. Zastosowanie tych miar pozwala na ocenę projektu z uwzględnieniem różnych aspektów efektywności ekonomicznej.
+
+\begin{table}[ht]
+    \centering
+    \caption[Kalkulacja NPV dla projektu automatyzacji, źródło: opracowanie własne]{Kalkulacja NPV dla projektu automatyzacji}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| c | p{0.1\textwidth} | p{0.1\textwidth} | p{0.3\textwidth} | p{0.2\textwidth} |}
+        \hline
+        \textbf{Rok} & \textbf{Koszty (PLN)} & \textbf{Korzyści (PLN)} & \textbf{Przepływy pieniężne netto (PLN)} & \textbf{Zdyskontowane przepływy (PLN)} \\
+        \hline
+        0 & 6~460 & 0 & -6~460 & -6~460 \\
+        \hline
+        1 & 4~500 & 4~820 & 320 & 224 \\
+        \hline
+        2 & 5~056 & 5~228 & 172 & 83 \\
+        \hline
+        3 & 4~885 & 5~291 & 406 & 134 \\
+        \hline
+        \textbf{Suma} & \textbf{20~562} & \textbf{15~104} & \textbf{-5~458} & \textbf{-5~569} \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne}
+\end{table}
+
+Przyjęta wartość stopy dyskontowej na poziomie 6\% została ustalona w oparciu o cztery czynniki. Pierwszym z nich jest koszt kapitału jednostek sektora publicznego - w przypadku inwestycji uczelnianych, stopa dyskontowa zazwyczaj odzwierciedla koszt finansowania projektów ze środków publicznych. Zgodnie z rekomendacjami Narodowego Banku Polskiego \cite{NBP2023stopy}, zalecana stopa dyskontowa kształtuje się w przedziale 5,87\% dla lat 2025-2027. Kolejnym czynnikiem jest prognozowana inflacja - zgodnie z projekcjami \cite{NBP2025}, średnioroczna inflacja w Polsce w latach 2025-2027 jest prognozowana na poziomie około 5,87\%. 
+
+Na podstawie tych danych, przyjęto stopę dyskontową na poziomie 6\%, co zapewnia konserwatywne podejście do wyceny przyszłych przepływów pieniężnych i jest zgodne z praktyką rynkową dla projektów o podobnym charakterze i poziomie ryzyka.
+
+\gls{npv} projektu przy przyjętej stopie dyskontowej wynosi -5 569 zł, co wskazuje na brak opłacalności ekonomicznej w przyjętym horyzoncie czasowym. Ujemna wartość \gls{npv} oznacza, że zdyskontowane korzyści finansowe nie przewyższają zdyskontowanych kosztów w analizowanym okresie trzech lat. Wynik ten sugeruje, że projekt nie generuje wystarczających korzyści finansowych, aby uzasadnić jego realizację wyłącznie na podstawie kryteriów ekonomicznych.
+
+{ \footnotesize
+\begin{equation}\label{eq:Return on Investment}
+\text{ROI} = \frac{\text{Suma korzysci} - \text{Suma kosztow}}{\text{Naklady inwestycyjne}} \times 100\% = \frac{15\,104\ \text{PLN} - 14\,102\ \text{PLN}}{6\,460\ \text{PLN}} \times 100\% = \frac{1\,002\ \text{PLN}}{6\,460\ \text{PLN}} \times 100\% = 15{,}5\%
+\end{equation}
+\equationcaption{Wzór na obliczenie zwrotu z inwestycji (ROI)}
+}
+
+Sposób obliczania \gls{roi} przedstawiono we wzorze 7.1, przy czym uwzględniono sumaryczne korzyści oraz nakłady w horyzoncie trzyletnim. Uzyskana wartość \gls{roi} na poziomie 15,5\% w okresie 3 lat oznacza, że każda zainwestowana złotówka przynosi około 0,16 zł zysku ponad poniesione nakłady w analizowanym okresie. W ujęciu rocznym daje to około 4,9\% rocznie.
+
+Warto zauważyć, że mimo ujemnej wartości \gls{npv}, wskaźnik \gls{roi} przyjmuje wartość dodatnią. Wynika to z faktu, że \gls{roi} nie uwzględnia zmiany wartości pieniądza w czasie (nie dyskontuje przepływów pieniężnych), a jedynie bilansuje nominalne korzyści i koszty.
+Uzyskany poziom \gls{roi} można uznać za umiarkowany. W sektorze komercyjnym dla projektów IT typowo oczekuje się ROI na poziomie powyżej 50\% w perspektywie 3-letniej, jednak w sektorze publicznym, gdzie projekty często mają charakter niekomercyjny i służą realizacji celów społecznych, niższe wartości \gls{roi} są akceptowalne.
+Biorąc pod uwagę, że głównym celem projektu nie była maksymalizacja korzyści finansowych, a poprawa jakości pracy oraz realizacja celów strategicznych uczelni, uzyskany poziom \gls{roi} można uznać za akceptowalny, szczególnie w połączeniu z istotnymi korzyściami jakościowymi i strategicznymi.
+
+\section{Analiza korzyści jakościowych i strategicznych}
+
+Chociaż standardowe wskaźniki finansowe nie wskazują jednoznacznie na wysoką opłacalność ekonomiczną projektu (ujemne \gls{npv} przy umiarkowanym \gls{roi}), należy rozszerzyć analizę o aspekty, które nie zostały uwzględnione w podstawowych kalkulacjach finansowych.
+
+\begin{table}[ht]
+    \centering
+    \caption[Korzyści jakościowe z wdrożenia systemu automatyzacji, źródło: opracowanie własne na podstawie wywiadów z administratorem]{Korzyści jakościowe z wdrożenia systemu automatyzacji}
+    \renewcommand{\arraystretch}{1.3} % Zwiększenie odstępów między wierszami
+    \begin{tabular}{| p{0.3\textwidth} | p{0.6\textwidth} |}
+        \hline
+        \textbf{Kategoria} & \textbf{Opis korzyści} \\
+        \hline
+        Poprawa jakości pracy administratora & Eliminacja powtarzalnych, czasochłonnych zadań zwiększa satysfakcję z pracy \\
+        \hline
+        Dostępność danych w czasie rzeczywistym & Administrator ma natychmiastowy dostęp do aktualnych informacji o uczestnikach, co usprawnia proces decyzyjny \\
+        \hline
+        Standaryzacja procesu & Ujednolicony i powtarzalny proces rejestracji zapewnia spójność danych między kolejnymi edycjami wydarzeń \\
+        \hline
+        Możliwość generowania automatycznych raportów & System umożliwia automatyczne tworzenie zestawień frekwencji \\
+        \hline
+        Redukcja stresu administratora & Eliminacja czasochłonnych, manualnych czynności zmniejsza poziom stresu i ryzyka wypalenia zawodowego \\
+        \hline
+    \end{tabular}
+    \vspace{0.5em}
+    \par\raggedright\footnotesize{Źródło: opracowanie własne na podstawie wywiadów z administratorem}
+\end{table}
+
+Korzyści jakościowe, choć trudne do bezpośredniej wyceny, mają istotny wpływ na wartość projektu. Szczególnie ważna jest poprawa warunków pracy administratora, który zamiast poświęcać czas na rutynowe, manualne zadania, może skupić się na bardziej wartościowych aspektach organizacji wydarzeń Sciencepreneurs Club. 
+
+Wdrożenie systemu automatyzacji rejestracji wpisuje się w szerszy kontekst strategiczny \gls{pw}, zdefiniowany w dokumencie "Strategia rozwoju Politechniki Warszawskiej do roku 2030" ~\parencite[s. 16]{PW2030}. Projekt ten, choć niewielki w skali uczelni, stanowi istotny element realizacji wizji nowoczesnej instytucji akademickiej, działającej w oparciu o najnowsze technologie i efektywne procesy organizacyjne.
+
+Wdrożony system automatyzacji wpisuje się bezpośrednio w obszar Strategicznego Pola Oddziaływania "Informacja i otoczenie cyfrowe", które zostało zdefiniowane jako jeden z czterech kluczowych obszarów rozwoju uczelni, stanowiąc praktyczną implementację cyfryzacji procesów administracyjnych. Wdrożony system realizuje te założenia poprzez automatyzację procesu rejestracji oraz umożliwienie analityki danych o uczestnikach wydarzeń. Projekt ten stanowi przykład innowacyjnego podejścia do optymalizacji procesów administracyjnych, angażując pracowników uczelni w proces wdrażania nowych technologii. Taka postawa sprzyja budowaniu kultury organizacyjnej opartej na ciągłym doskonaleniu i otwartości na zmiany, co jest istotnym elementem strategii rozwoju uczelni. Strategia rozwoju \gls{pw} do roku 2030 podkreśla także znaczenie rozwoju kompetencji w kontekście zmieniającego się świata. Wdrożenie systemu automatyzacji rejestracji przyczynia się do rozwoju umiejętności cyfrowych pracowników administracyjnych, którzy uczą się korzystać z nowoczesnych narzędzi, takich jak Power Automate czy Power Query, co wpisuje się w strategiczne cele uczelni związane z rozwojem kompetencji.
+
+Mimo relatywnie niewielkiej skali, projekt automatyzacji rejestracji uczestników wydarzeń stanowi istotny element realizacji strategii rozwoju \gls{pw}, wpisując się w kluczowe obszary strategiczne i przyczyniając się do budowania nowoczesnej, efektywnej i innowacyjnej instytucji akademickiej. Korzyści strategiczne, choć trudno je bezpośrednio wycenić, stanowią ważny argument przemawiający za realizacją projektu, nawet przy umiarkowanych wskaźnikach opłacalności finansowej.
+
+\section{Uzasadnienie decyzji inwestycyjnej}
+Analizując kompleksowo wszystkie aspekty projektu wdrożenia systemu automatyzacji rejestracji uczestników wydarzeń, kierownictwo \gls{inin} podjęło decyzję o jego realizacji, kierując się zrównoważonym podejściem uwzględniającym zarówno wymiar ilościowy, jakościowy, ekonomiczny, a także strategiczny.
+
+W kontekście finansowym, mimo ujemnej wartości \gls{npv} (-5 569 zł), projekt wykazuje umiarkowany, ale dodatni wskaźnik \gls{roi} na poziomie 15,5\% w perspektywie 3-letniej. Oznacza to, że każda zainwestowana złotówka przynosi około 0,16 zł zysku ponad poniesione nakłady w analizowanym okresie. W ujęciu rocznym daje to zwrot na poziomie 4,9\%, co w kontekście instytucji publicznej i wewnętrznego projektu o charakterze administracyjnym można uznać za akceptowalny poziom. Projekt zgodnie z założeniami został zrealizowany z istniejącą infrastrukturą technologiczną i minimalizacją dodatkowych kosztów inwestycyjnych.
+
+Kluczową przesłanką uzasadniającą realizację projektu jest jego wkład w strategiczne cele \gls{pw} zdefiniowane w dokumencie "Strategia rozwoju Politechniki Warszawskiej do roku 2030". Projekt wpisuje się bezpośrednio w Strategiczne Pole Oddziaływania "Informacja i otoczenie cyfrowe", stanowiąc konkretny przykład cyfryzacji i automatyzacji procesów administracyjnych. Przyczynia się także do rozwoju kompetencji cyfrowych pracowników, budowania zintegrowanego ekosystemu technologicznego uczelni oraz poprawy jej wizerunku jako instytucji nowoczesnej i efektywnie zarządzanej.
+
+\gls{inin}, jako jednostka odpowiedzialna za wspieranie rozwoju przedsiębiorczości akademickiej oraz innowacyjnych projektów, naturalnie angażuje się w inicjatywy mające na celu optymalizację i automatyzację procesów. Wdrażając innowacyjne rozwiązania w zakresie zarządzania wydarzeniami, \gls{inin} nie tylko poprawia efektywność własnych działań, ale również daje przykład innym jednostkom uczelni, realizując swoją misję promocji innowacyjności i przedsiębiorczości.
+
+Istotnym argumentem przemawiającym za realizacją projektu jest również znacząca poprawa warunków pracy administratora odpowiedzialnego za organizację wydarzeń. Dzięki automatyzacji czasochłonnych, powtarzalnych zadań, administrator może skoncentrować się na bardziej wartościowych aspektach swojej pracy, co przekłada się na wyższą satysfakcję zawodową i mniejsze ryzyko wypalenia zawodowego. Jest to szczególnie ważne w kontekście dążenia do tworzenia zrównoważonego środowiska pracy, które jest jednym z elementów strategii uczelni.
+
+Należy również podkreślić, że przyjęte w analizie finansowej założenia mają charakter konserwatywny. W rzeczywistości, wraz ze wzrostem liczby organizowanych wydarzeń, oszczędności czasowe, a co za tym idzie - korzyści finansowe, mogą być znacznie wyższe niż założono. Ponadto, system prawdopodobnie będzie funkcjonował znacznie dłużej niż przyjęty w analizie horyzont czasowy (3 lata), co dodatkowo poprawi jego efektywność ekonomiczną w dłuższej perspektywie.
+
+Biorąc pod uwagę wszystkie te czynniki, decyzja o realizacji projektu jawi się jako uzasadniona i zgodna z długoterminowymi interesami uczelni. Projekt, choć nie generuje wysokich bezpośrednich korzyści finansowych, stanowi wartościową inwestycję w efektywność operacyjną, rozwój kompetencji cyfrowych oraz realizację strategicznych celów \gls{pw}. Jest to podejście zgodne z misją instytucji publicznej, której celem nie jest maksymalizacja zysku, lecz efektywne realizowanie zadań na rzecz społeczności akademickiej i otoczenia społeczno-gospodarczego.
