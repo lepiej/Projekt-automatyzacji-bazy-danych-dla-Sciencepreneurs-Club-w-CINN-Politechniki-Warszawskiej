@@ -1,0 +1,92 @@
+% !TEX TS-program = pdflatex
+% !TEX TS-options = -shell-escape
+% !BIB TS-program = biber
+
+
+% Główny plik dokumentu pracy dyplomowej
+\documentclass[a4paper,twoside,11pt]{report}
+
+% Wczytanie ustawień z pliku setup.tex
+\input{setup}
+
+\begin{document}
+
+% Strona tytułowa - wczytanie gotowego PDF z uczelnianym szablonem
+\includepdf[pages=1]{pdf/strona_tytulowa.pdf}
+
+% Streszczenie w języku polskim
+\newpage
+\include{tekst/0-streszczenie}
+
+% Spis treści
+\newpage
+\tableofcontents
+
+% Kolejne rozdziały pracy
+
+\chapter{Wprowadzenie}
+\input{tekst/1-wprowadzenie}
+
+\chapter{Przechowywanie i architektura danych}
+\input{tekst/2-teoria}
+
+\chapter{Analiza Inkubatora Innowacji w Centrum Innowacji na Politechnice Warszawskiej}
+\input{tekst/3-organizacja}
+
+\chapter{Analiza i diagnoza bazowego systemu zarządzania danymi w projekcie Sciencepreneurs Club}
+\input{tekst/4-asis}
+
+\chapter{Organizacja planu pracy}
+\input{tekst/5-tobe}
+
+\chapter{Projektowanie zautomatyzowanego systemu}
+\input{tekst/6-projektowanie}
+
+\chapter{Komponenty projektu inżynierskiego}
+\input{tekst/7-komponenty}
+
+\chapter{Analiza efektywności}
+\input{tekst/8-efekt}
+
+\chapter{Wdrożenie i zarządzanie ryzykiem}
+\input{tekst/9-risk}
+
+\chapter{Podsumowanie}
+\input{tekst/10-podsumowanie}
+
+% Bibliografia
+\chapter*{Bibliografia}
+\addcontentsline{toc}{chapter}{Bibliografia}
+% 2) Bibliografia - źródła tradycyjne -
+\section*{Źródła tradycyjne}
+\printbibliography[filter=traditional, heading=none]
+% 3) Bibliografia - źródła internetowe -
+\section*{Źródła internetowe}
+\printbibliography[filter=online, heading=none]
+
+% Wykaz symboli i skrótów
+\acronymslist
+
+% Spis rysunków
+\newpage
+\listoffigures
+\addcontentsline{toc}{chapter}{Spis rysunków}
+
+% Spis tabel
+\newpage
+\listoftables
+\addcontentsline{toc}{chapter}{Spis tabel}
+
+% Spis kodów
+\newpage
+\lstlistoflistings
+
+% Spis równań
+\newpage
+\listofequations
+
+% Spis załączników i załączniki
+\newpage
+\input{tekst/appendices}
+
+\end{document}

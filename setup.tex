@@ -1,0 +1,497 @@
+% Podstawowe ustawienia zgodne z wymogami PW
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{ifxetex} % konfiguracja jezyka
+\usepackage{ifthen} % konfiguracja jezyka
+\usepackage{appendix}
+\usepackage[hyphens]{url}
+\usepackage{breakurl}
+\usepackage{amsmath} % spis wzorow
+\usepackage{tocbasic} % For advanced TOC handling
+\usepackage{array} 
+\usepackage[T1]{fontenc}
+
+% Konfiguracja jezyka
+% Dla pdfLaTeX z językiem polskim
+\usepackage[MeX]{polski}
+\usepackage[english,polish]{babel}
+\usepackage{csquotes}
+\selectlanguage{polish}
+\usepackage[utf8]{inputenc}
+
+% Ustawienia strony - WYMAGANE
+\usepackage[inner=30mm,outer=20mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[LE,RO]{\thepage}
+
+% Czcionka bezszeryfowa - ZALECANE
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+% Interlinia 1.15 - ZALECANE
+\usepackage{setspace}
+\setstretch{1.15}
+
+% Numeracja na zewnętrznych stronach - WYMAGANE
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[LE,RO]{\thepage}  % Ta sama numeracja dla stron z rozdziałami
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Formatowanie akapitów, opcja bez wcięcia z odstępem 4 przed akapitem - DO WYBORU
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% Domyślnie LaTeX stosuje numerację ciągłą w rodziałach- DO WYBORU 
+
+% Bibliografia BG PW
+% Bibliografia 1 zgodna z wymogami wydziału - styl numeryczny
+\RequirePackage[
+    backend=biber,
+    style=numeric,         % Styl numeryczny w bibliografii
+    citestyle=authoryear,  % Styl cytowania autor-rok w tekście
+    sorting=nyt,
+    autopunct=true,
+    giveninits=true,       % Inicjały zamiast pełnych imion
+    isbn=false,            % Bez wyświetlania ISBN
+    url=true,              % URL tylko dla źródeł internetowych
+    doi=false,             % Bez wyświetlania DOI
+    maxbibnames=99,        % Maksymalna liczba autorów (praktycznie wszyscy)
+    uniquework=true,       % Ważne dla wykrywania powtarzających się autorów i dat
+    uniquelist=false       % Nie zmieniaj liczby autorów dla odróżnienia źródeł
+]{biblatex}
+
+% Bibliografia 2 wczytanie pliku z bibliografią
+\addbibresource{bibliografia.bib}
+
+% Bibliografia 3 definiowanie stylu wyświetlania bibliografii
+\DeclareNameAlias{default}{family-given} % Nazwisko przed imieniem
+\DeclareFieldFormat[book,incollection,thesis]{title}{\textit{#1}} % Formatowanie tytułów książek kursywą
+% Bibliografia 4 Configure spacing in citations
+\renewcommand*{\nameyeardelim}{\addspace}
+\renewcommand*{\postnotedelim}{\addcomma\space}
+
+% Bibliografia 4 redefiniujemy \cite na \parencite, żeby odnośniki w nawiasach działały nawet przy \cite{klucz}:
+\let\cite\parencite
+
+% Bibliografia 5 Definiujemy filtry na podstawie słowa kluczowego "online"
+\defbibfilter{online}{
+  keyword=online
+}
+\defbibfilter{traditional}{
+  not keyword=online
+}
+
+% Bibliografia 6 Dostosowanie formatu źródeł internetowych
+% ZMODYFIKOWANE dla zgodności z BG PW:
+\DeclareFieldFormat{url}{Dostępny w: \url{#1}}  % ZMIENIONE: Dodanie "Dostępny w:" przed URL
+
+% Bibliografia 7 Modyfikacja formatu daty dostępu
+\DeclareFieldFormat{urldate}{[dostęp: \thefield{urlday}.\thefield{urlmonth}.\thefield{urlyear}]}  % ZMIENIONE: Dodany dwukropek po "dostęp"
+
+% Bibliografia 9  makro do wyświetlania typu nośnika dla online i lokalizacji i wydawy dla artykulu
+\newbibmacro*{type+online}{%
+  \printtext{[Online]}%
+}
+\newbibmacro*{date+extrayear}{%
+  \iffieldundef{year}
+    {}
+    {\printtext[parens]{%
+       \printfield{year}%
+       \printfield{extrayear}}}}
+
+\newbibmacro*{location+publisher}{%
+  \printlist{location}%
+  \iflistundef{location}
+    {\setunit*{\addcomma\space}}
+    {\setunit*{\addcolon\space}}%
+  \printlist{publisher}%
+  \newunit}
+  
+% Bibliografia 10 driver dla @online - zgodny z wymogami BG PW
+\DeclareBibliographyDriver{online}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \printtext{[Online]}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{publisher+location+date}%
+  \newunit\newblock
+  \usebibmacro{chapter+pages}%
+  \newunit\newblock
+  \printfield{pagetotal}%
+  \newunit\newblock
+  \iffieldundef{urlyear}
+    {}
+    {\printtext{\printurldate}}%
+  \newunit\newblock
+  \printfield{url}%
+  \newunit\newblock
+  \usebibmacro{finentry}}
+
+
+% Bibliografia 11 driver dla @misc - dla stron internetowych zgodny z BG PW
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \iffieldundef{howpublished}
+    {}
+    {\ifboolexpr{test {\iffieldequalstr{howpublished}{online}} or test {\iffieldequalstr{howpublished}{baza danych online}}}
+      {\printtext{[\printfield{howpublished}]}}
+      {}}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{publisher+location+date}%
+  \newunit\newblock
+  \usebibmacro{chapter+pages}%
+  \newunit\newblock
+  \printfield{pagetotal}%
+  \newunit\newblock
+  \iffieldundef{urlyear}
+    {}
+    {\printtext{\printurldate}}%
+  \newunit\newblock
+  \printfield{url}%
+  \newunit\newblock
+  \usebibmacro{finentry}}
+
+  % Bibliografia 11+ Driver dla @article zgodny z wymogami BG PW
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  % Autor
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  % Tytuł artykułu
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  % Tytuł czasopisma kursywą
+  \printfield[emphasized]{journaltitle}%
+  % Typ nośnika dla wersji online
+  \iffieldundef{url}{}{\printtext{[Online]}}%
+  \newunit\newblock
+  % Miejsce wydania i wydawca
+  \usebibmacro{location+publisher}%
+  \newunit\newblock
+  % Rok
+  \usebibmacro{date}%
+  \newunit\newblock
+  % Numer/wolumen/wydanie
+  \printfield{volume}%
+  \printfield{number}%
+  \newunit\newblock
+  % Zakres stron
+  \printfield{pages}%
+  \newunit\newblock
+  % Data dostępu dla wersji online
+  \iffieldundef{urlyear}
+    {}
+    {\printtext{\printurldate}}%
+  \newunit\newblock
+  % URL dla wersji online
+  \printfield{url}%
+  \newunit\newblock
+  % Zakończenie wpisu
+  \usebibmacro{finentry}}
+  
+% Bibliografia 12 zmienna do śledzenia duplikatów
+\newcommand{\extrayearflag}[1]{%
+  \iffieldequalstr{extrayear}{}{}{\def#1{true}}%
+}
+
+% Bibliografia 13 Niestandardowy format wyświetlania cytowania - NUMER zamiast literki
+\DeclareCiteCommand{\parencite}
+  {\bibopenparen\usebibmacro{prenote}}  % Jawny nawias otwierający
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{%
+     % Drukujemy autora i rok
+     \printnames{labelname}%
+     \setunit{\nameyeardelim}%
+     \printfield{labelyear}%
+     % Sprawdzamy czy to duplikat (ma extrayear)
+     \iffieldundef{extrayear}
+       {}
+       {% Jeśli to duplikat, drukujemy numer zamiast literki
+        \setunit{\addspace}%
+        \printtext[brackets]{\printfield{labelnumber}}}}%
+  }
+  {\multicitedelim}
+  {\usebibmacro{postnote}\bibcloseparen}  % Jawny nawias zamykający
+  % Zapewniamy, że \cite również używa nawiasów
+\DeclareCiteCommand{\cite}
+  {\bibopenparen\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printnames{labelname}%
+    \setunit{\nameyeardelim}%
+    \printfield{labelyear}%
+    % Sprawdzamy czy to duplikat (ma extrayear)
+    \iffieldundef{extrayear}
+      {}
+      {% Jeśli to duplikat, drukujemy numer zamiast literki
+       \setunit{\addspace}%
+       \printtext[brackets]{\printfield{labelnumber}}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}\bibcloseparen}
+
+% Ukrywamy literki w citowaniach (ważna zmiana!)
+\DeclareFieldFormat{extrayear}{}
+  
+% Bibliografia 14 %  wersja formatu biblografii, bez literek w roku
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {\printnames{author}%
+     \iffieldundef{authortype}
+       {}
+       {\usebibmacro{authorstrg}}}
+    {\usebibmacro{labeltitle}}%
+  \usebibmacro{date+extrayear}}
+
+% Bibliografia 15 dostosowanie dla \cite, który teraz również używa tego samego formatu
+\let\cite\parencite
+
+\BiblatexSplitbibDefernumbersWarningOff
+
+% Podpisy rysunków i tabel - Tytuł tabeli umieszczony nad tabelą - justowany do lewej strony, czcionka o kroju bezszeryfowym rozmiar 9 zalecany - Podpis rysunku umieszczony pod rysunkiem - justowany do lewej strony, czcionka o kroju bezszeryfowym rozmiar 9 - ZALECANE
+\usepackage{caption}
+\captionsetup[table]{font={sf,footnotesize},position=above,justification=raggedright,singlelinecheck=false}
+\captionsetup[figure]{font={sf,footnotesize},position=below,justification=raggedright,singlelinecheck=false}
+
+% Formatowanie nagłówków - ZALECANE
+\usepackage{titlesec}
+\titleformat{\chapter}{\fontsize{14}{16}\bfseries\selectfont}{\thechapter}{1em}{}
+\titleformat{\section}{\fontsize{13}{15}\bfseries\selectfont}{\thesection}{1em}{}
+\titleformat{\subsection}{\fontsize{12}{14}\bfseries\selectfont}{\thesubsection}{1em}{}
+
+% Przypisy dolne - ZALECANE
+\usepackage[bottom,perpage]{footmisc}
+\renewcommand{\footnotesize}{\fontsize{9}{10.5}\selectfont}
+
+% Obsługa akronimów i glosariuszy - zgodne z wymogami BG PW
+\RequirePackage[acronym,symbols,nopostdot]{glossaries}
+\setglossarysection{section}
+\makeglossaries
+\loadglsentries{glossary}
+
+\newcommand{\acronymstitle}{Wykaz skrótów i symboli}
+
+\newcommand{\acronymslist}{
+  \chapter*{\acronymstitle}
+  \pagestyle{plain}
+  \addcontentsline{toc}{chapter}{\acronymstitle}
+  \printglossary[type=\acronymtype,title={}]
+  \printglossary[type=symbols,title={}]
+}
+
+\renewcommand*{\glsnamefont}[1]{\textbf{#1}}
+\renewcommand*{\glossaryheader}{}
+\renewcommand*{\glsgroupskip}{}
+
+% Kod
+% Kod 1 Kolory dla listingów kodu
+\usepackage{xcolor}
+\usepackage{listings}
+
+% Kod 2 Definicja języka M (Power Query)
+\lstdefinelanguage{PowerQueryM}{
+  keywords={let, in, if, then, else, each, try, otherwise, error, and, or, not, 
+            as, is, null, function, type, table, record, list, true, false, meta, 
+            shared, section, Text, Number, Date, Time, DateTime, Duration, 
+            Logical, Binary, Any, none, nullable, optional, Value},
+  keywordstyle=\bfseries\color{blue},
+  identifierstyle=\color{black},
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgray},
+  stringstyle=\color{orange},
+  morestring=[b]",
+  morestring=[b]',
+  literate=
+    {=>}{$\Rightarrow$}{2}
+    {...}{$\ldots$}{1}
+    {<>}{$\neq$}{1}
+    {=}{{{\color{black}=}}}{1}
+    {>}{{{\color{black}>}}}{1}
+    {<}{{{\color{black}<}}}{1}
+}
+
+% Kod 3 Definicja języka JSON
+\definecolor{delim}{RGB}{20,105,176}
+\definecolor{numb}{RGB}{106, 109, 32}
+\definecolor{string}{rgb}{0.64,0.08,0.08}
+
+\lstdefinelanguage{json}{
+    numbers=left,
+    numberstyle=\small,
+    frame=single,
+    rulecolor=\color{black},
+    showspaces=false,
+    showtabs=false,
+    breaklines=true,
+    postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{gray}\hookrightarrow\space}},
+    breakatwhitespace=true,
+    basicstyle=\ttfamily\small,
+    upquote=true,
+    morestring=[b]",
+    stringstyle=\color{string},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+% Kod 4 Podstawowe ustawienia dla wszystkich języków
+\lstset{
+  basicstyle=\ttfamily\small,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  numbers=left,
+  numberstyle=\tiny,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  frame=single
+}
+
+% Kod 5 formatowanie listy kodow
+\renewcommand{\lstlistingname}{Kod}
+\renewcommand{\lstlistlistingname}{Spis kodów}
+
+% Załączniki 1 Formatowania nagłówków w załącznikach
+\newcommand{\headingformat}[1]{%
+  \vspace{0.5cm}
+  \noindent\textbf{\large #1}
+  \vspace{0.2cm}
+}
+
+% URL
+% URL 1 Pozwala na łamanie URL-i w bibliografii
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+% URL 2 Hyperlinks
+\RequirePackage{hyperref}
+\hypersetup{
+  unicode=true,
+  pdftoolbar=true,
+  pdfmenubar=true,
+  pdffitwindow=false,
+  pdfstartview={FitH},
+  linktoc=all,
+  pdfnewwindow=true,
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  filecolor=black,
+  urlcolor=black,
+  breaklinks=true 
+}
+% URL 3 Modyfikacja formatowania URL, aby umożliwić łamanie długich adresów
+% Już zmodyfikowane wyżej w DeclareFieldFormat{url}
+
+% URL 4 Aktywuj znaki specjalne w URL-ach, aby umożliwić łamanie
+\def\UrlBreaks{\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]%
+  \do\)\do\,\do\?\do\'\do+\do\=\do\#\do\-}
+
+% URL 5 Ustaw style URL-i
+\urlstyle{same}
+
+% Spis wzorow
+% Spis wzorow 1 Definicja nowego licznika dla wzorów
+\newcounter{equationcounter}[chapter]
+\renewcommand{\theequationcounter}{\thechapter.\arabic{equationcounter}}
+% Spis wzorow 2 Definicja nowego środowiska dla wzorów
+\makeatletter
+% Spis wzorow 3 Definicja komendy do opisu wzoru
+\newcommand{\equationcaption}[1]{%
+  \refstepcounter{equationcounter}%
+  \addcontentsline{loe}{equation}{\protect\numberline{\theequationcounter}#1}%
+  \par\noindent\small Wzór \theequationcounter: #1\par%
+}
+% Spis wzorow 4 Tworzenie nowego pliku dla spisu wzorów
+\newcommand{\listofequationsname}{Spis wzorów}
+\newcommand{\listofequations}{%
+  \chapter*{\listofequationsname}%
+  \@mkboth{\MakeUppercase\listofequationsname}{\MakeUppercase\listofequationsname}%
+  \@starttoc{loe}%
+}
+% Spis wzorow 5 Dostosowanie formatu wpisu w spisie wzorów
+\newcommand*\l@equation[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{1.0em \@plus\p@}%
+    \setlength\@tempdima{1.5em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\
+      \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill\nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi%
+}
+% Spis wzorow 6 Definicja typu dokumentu dla spisu wzorów
+\@ifundefined{contentsline}{%
+  \newcommand{\contentsline}[3]{\csname l@#1\endcsname{#2}{#3}}%
+}{}
+
+\@ifundefined{float@listhead}{}{%
+  \float@listhead{\listofequationsname}%
+}
+\makeatother
+% Spis wzorow 7 Dodanie spisu wzorów do spisu treści (opcjonalne)
+\newcommand{\addlistofequations}{%
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\listofequationsname}
+  \listofequations
+}
