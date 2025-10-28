@@ -10,5 +10,5 @@ zarządzanie danymi, automatyzacja, usprawnienie procesów, analiza systemu
 ## License
 Code in this repository is released under the [MIT License](LICENSE).
 
-The written thesis (file `thesis.pdf`) is licensed under 
+The written thesis is licensed under 
 **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
