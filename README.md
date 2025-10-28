@@ -1,22 +1,14 @@
-# About
-This is a template for writing a bachelor thesis at KTH for the ICT School. It can be furter customized to fit templates for others too if anyone wants to do that.
+# Projekt automatyzacji bazy danych dla projektu Sciencepreneurs Club w Centrum Innowacji Politechniki Warszawskiej
+Niniejsza praca inżynierska poświęcona jest szczegółowej analizie oraz optymalizacji systemu zarządzania bazą danych członków Sciencepreneurs Club, działającego w ramach Centrum Innowacji Politechniki Warszawskiej. W ramach przeprowadzonej analizy zidentyfikowano kluczowe ograniczenia obecnego systemu, w szczególności związanego z ręcznym przetwarzaniem danych uczestników. Procesy te, obejmujące porównywanie list zgłoszeniowych, kopiowanie informacji kontaktowych, eliminację duplikatów oraz analiz frekwencji, wykazały się wysoką czasochłonnością i podatnością na błędy.
 
-# Example
-The compiled report is included in this repo as an example. Look at [report_compiled.pdf](report_compiled.pdf).
+W odpowiedzi na te wyzwania, niniejsza praca inżynierska na podstawie szczegółowej analizy zaproponuje zaprojektowanie i wdrożenie zautomatyzowanego systemu zarządzania danymi, który usprawni kluczowe procesy, poprawi dokładność danych oraz umożliwi skalowanie działań klubu. W pracy szczegółowo omówione zostaną poszczególne komponenty projektu, w tym proces projektowania systemu, jego wdrożenie oraz analiza ekonomiczna oraz użyteczności po jego implementacji. Celem projektu jest stworzenie zautomatyzowanego systemu, który usprawni zarządzanie danymi i pozwoli Sciencepreneurs Club na efektywniejsze wspieranie przedsiębiorczości w społeczności akademickiej.
+% koniec streszczenia 
 
-# Usage
-To compile this project, you will need to install XeLaTeX as this project is using special fonts to emulate the template from KTH. It you use regular LaTeX, it should still compile but positioning and fonts might be slightly wrong.
+## Słowa kluczowe:
+zarządzanie danymi, automatyzacja, usprawnienie procesów, analiza systemu
 
-# Overleaf
-This project works on overleaf. You will need to manually set the compiler engine to XeLaTeX in the project settings to get that option but otherwise you should just be able to zip this repo and upload it directly to overleaf. There should be a template already on Overleaf if you search for it.
+## License
+Code in this repository is released under the [MIT License](LICENSE).
 
-# Contact
-Please send me an email if you have any problem with this repo. I will try to help if I can. Also: Create a pull request if you have any improvements!
-
-email: hannes.rabo@gmail.com or hrabo@kth.se
-
-# Images
-The images and text belongs to KTH but has been included in this repository to make it easier to use for students. You can use this repo with images in its entirety if you are writing a thesis that you intent to turn in to KTH.
-
-# Final Remark
-Good luck writing!
+The written thesis is licensed under 
+**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
