@@ -1,25 +1,23 @@
+
+% Konfiguracja jezyka
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes} % Times-like
+\setsansfont{TeX Gyre Heros}  % Helvetica-like, has Polish glyphs
+\setmonofont{DejaVu Sans Mono}
+\usepackage[main=polish,english]{babel}
+
 % Podstawowe ustawienia zgodne z wymogami PW
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{ifxetex} % konfiguracja jezyka
 \usepackage{ifthen} % konfiguracja jezyka
 \usepackage{appendix}
 \usepackage[hyphens]{url}
-\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath} % spis wzorow
 \usepackage{tocbasic} % For advanced TOC handling
 \usepackage{array} 
 \usepackage[T1]{fontenc}
 
-% Konfiguracja jezyka
-% Dla pdfLaTeX z językiem polskim
-\usepackage[MeX]{polski}
-\usepackage[english,polish]{babel}
-\usepackage{csquotes}
-\selectlanguage{polish}
-\usepackage[utf8]{inputenc}
 
 % Ustawienia strony - WYMAGANE
 \usepackage[inner=30mm,outer=20mm,top=25mm,bottom=25mm]{geometry}
@@ -52,6 +50,8 @@
 
 % Bibliografia BG PW
 % Bibliografia 1 zgodna z wymogami wydziału - styl numeryczny
+\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
+\addbibresource{bibliografia.bib}
 \RequirePackage[
     backend=biber,
     style=numeric,         % Styl numeryczny w bibliografii
@@ -412,6 +412,7 @@
 }
 
 % URL
+\usepackage[hidelinks]{hyperref}
 % URL 1 Pozwala na łamanie URL-i w bibliografii
 \setcounter{biburlnumpenalty}{100}
 \setcounter{biburllcpenalty}{100}
